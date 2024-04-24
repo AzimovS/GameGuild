@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { AlarmIcon, ReactionIcon } from "~~/components/icons";
+import { useCoinsContext } from "~~/services/store/coinsContext";
 import { notification } from "~~/utils/scaffold-eth";
 
 const MIN_COUNT_DOWN = 2000;
@@ -13,6 +14,9 @@ const NUM_ROUND = 3;
 const icon = <AlarmIcon />;
 
 const ReactionGame = () => {
+  const { coins, setCoins } = useCoinsContext();
+  const { push } = useRouter();
+
   const [activeGame, setActiveGame] = useState(false);
 
   const [roundState, setRoundState] = useState(-1);
@@ -63,7 +67,7 @@ const ReactionGame = () => {
   };
 
   const returnToHomePage = () => {
-    redirect("/");
+    push("/");
   };
 
   const restartGame = () => {
@@ -199,6 +203,7 @@ const ReactionGame = () => {
       }
 
       notification.success(`Wow! You got ${reward} GG tokens!`);
+      setCoins(coins + reward);
     }
   }, [roundState, sumScore]);
 
@@ -206,8 +211,7 @@ const ReactionGame = () => {
     <div className="flex justify-center">
       <div className="mt-5 max-w-4xl mx-auto min-w-[50%] border">
         <GameTemplate
-          name="Тест на реакцию"
-          description="Нажимайте на экран как только жёлтый цвет сменится на зелёный."
+          name="Reaction Test"
           icon={icon}
           activeGame={activeGame}
           setActiveGame={setActiveGame}
