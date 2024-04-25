@@ -22,7 +22,7 @@ interface IReputyApp {
 	) external;
 }
 
-contract FrogNFT is ERC721URIStorage {
+contract BrainNFT is ERC721URIStorage {
 	uint256 public constant BRONZE_THRESHOLD = 50 ether;
 	uint256 public constant SILVER_THRESHOLD = 300 ether;
 	uint256 public constant GOLD_THRESHOLD = 500 ether;
@@ -42,7 +42,7 @@ contract FrogNFT is ERC721URIStorage {
 	constructor(
 		address ggToken_,
 		string memory baseURI_
-	) ERC721("Frog NFT", "FNFT") {
+	) ERC721("Brain NFT", "FNFT") {
 		baseURI = baseURI_;
 		ggToken = ggToken_;
 	}
