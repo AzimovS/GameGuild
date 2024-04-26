@@ -8,20 +8,6 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 import "./GGToken.sol";
 
-interface IReputyApp {
-	function addRating(
-		address user,
-		uint256 delta,
-		string memory action
-	) external;
-
-	function subRating(
-		address user,
-		uint256 delta,
-		string memory action
-	) external;
-}
-
 contract BrainNFT is ERC721URIStorage {
 	uint256 public constant BRONZE_THRESHOLD = 50 ether;
 	uint256 public constant SILVER_THRESHOLD = 300 ether;
@@ -31,7 +17,6 @@ contract BrainNFT is ERC721URIStorage {
 
 	address public owner;
 	address public ggToken;
-	IReputyApp public reputyApp;
 	mapping(address => mapping(uint256 => uint256)) ownerCounter;
 
 	string private baseURI;
@@ -45,10 +30,6 @@ contract BrainNFT is ERC721URIStorage {
 	) ERC721("Brain NFT", "FNFT") {
 		baseURI = baseURI_;
 		ggToken = ggToken_;
-	}
-
-	function setReputyApp(address app) external {
-		reputyApp = IReputyApp(app);
 	}
 
 	function claimNFT(uint256 nftIndex) external {
@@ -72,8 +53,6 @@ contract BrainNFT is ERC721URIStorage {
 		_mint(msg.sender, newItemId);
 		_setTokenURI(newItemId, Strings.toString(nftIndex));
 		ownerCounter[msg.sender][nftIndex]++;
-
-		reputyApp.addRating(msg.sender, CLAIM_NFT_REWARD, "");
 	}
 
 	function getOwnershipCount(
