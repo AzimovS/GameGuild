@@ -70,7 +70,15 @@ contract GGToken is ERC20 {
 		burner = _burner;
 	}
 
-	function rewardTokens(
+	function rewardTokens(address _user, uint256 _tokens) external onlyOwner {
+		_mint(_user, _tokens);
+		if (!existingUsers[_user]) {
+			holders.push(_user);
+		}
+		existingUsers[_user] = true;
+	}
+
+	function rewardTokensBatch(
 		address[] memory users,
 		uint256[] memory tokens
 	) external onlyOwner {
