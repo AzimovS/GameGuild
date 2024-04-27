@@ -10,7 +10,7 @@ const UserRow = ({ address, score, index }: { address: string; score: string; in
   const { address: connectedAddress } = useAccount();
 
   return (
-    <div className={clsx(["flex py-3 mx-2 justify-between mb-2"])}>
+    <div className={clsx(["flex mx-2 justify-between"])}>
       <div className="flex flex-col items-start justify-center">
         <div className="flex items-center">
           <div>
