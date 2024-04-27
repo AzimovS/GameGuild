@@ -1,6 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-// import { Contract } from "ethers";
+import { Contract, formatEther, parseEther } from "ethers";
 
 /**
  * Deploys a contract named "YourContract" using the deployer account and
@@ -31,10 +31,29 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
-  // console.log(ggtoken);
-  const BASE_URI = "";
+  const ggTokenContract = await hre.ethers.getContract<Contract>("GGToken", deployer);
+  const contractAcontract = await ggTokenContract.waitForDeployment();
+  console.log(contractAcontract);
 
-  await deploy("FrogNFT", {
+  const BASE_URI = "https://ironsoul0.github.io/brain/";
+  const rewardAccounts = [
+    "0x8593561a4742D799535390BC5C7B992867e50A09",
+    "0x0482Bb438b284a20E2384A07E3ccc83A968c4fC4",
+    "0xF189Cc449626135aC793636D3bC39301a29607ec",
+    "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "0xd945f759d422ae30a6166838317b937de08380e3",
+    "0x89012446b350CeacDe47402d831059797dcE8aC6",
+  ];
+
+  const rewardTokens = rewardAccounts.map(() => parseEther(Math.floor(Math.random() * 100 + 1).toString()));
+
+  for (let i = 0; i < rewardTokens.length; i++) {
+    console.log(formatEther(rewardTokens[i]));
+  }
+  console.log(rewardAccounts, rewardTokens);
+  ggTokenContract.rewardTokensBatch(rewardAccounts, rewardTokens);
+
+  const nftContract = await deploy("BrainNFT", {
     from: deployer,
     // Contract constructor arguments
     args: [ggtoken?.address, BASE_URI],
@@ -43,6 +62,8 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
+
+  await ggTokenContract.setBurner(nftContract.address);
 
   // Get the deployed contract to interact with it after deploying.
   // const yourContract = await hre.ethers.getContract<Contract>("YourContract", deployer);

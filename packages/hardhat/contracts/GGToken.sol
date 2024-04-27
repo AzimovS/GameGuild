@@ -54,14 +54,6 @@ contract GGToken is ERC20 {
 		return users;
 	}
 
-	function claimTokens(uint256 tokens) external {
-		_mint(msg.sender, tokens);
-		if (!existingUsers[msg.sender]) {
-			holders.push(msg.sender);
-		}
-		existingUsers[msg.sender] = true;
-	}
-
 	function burnTokens(address target, uint256 tokens) external onlyBurner {
 		_burn(target, tokens);
 	}
