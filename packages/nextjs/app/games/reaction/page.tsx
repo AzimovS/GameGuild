@@ -11,7 +11,7 @@ import { notification } from "~~/utils/scaffold-eth";
 
 const MIN_COUNT_DOWN = 2000;
 const MAX_COUNT_DOWN = 4000;
-const NUM_ROUND = 3;
+const NUM_ROUND = 4;
 const icon = <AlarmIcon />;
 
 const ReactionGame = () => {
@@ -112,7 +112,7 @@ const ReactionGame = () => {
   } else if (roundState == 3) {
     gameBody = (
       <div className="px-4 text-center">
-        <h2 className="text-2xl font-bold text-white fade">Your result: {lastScore} milliseconds </h2>
+        <h2 className="text-2xl font-bold text-white fade">Your last result: {lastScore} milliseconds </h2>
         <h2 className="mt-3 text-3xl font-bold text-white fade">
           Average reaction time: {sumScore / NUM_ROUND} milliseconds{" "}
         </h2>
