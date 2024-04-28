@@ -978,7 +978,7 @@ const deployedContracts = {
   },
   11155111: {
     BrainNFT: {
-      address: "0x3D7F079A307a517E6429D9055Aa2bDb945E6144B",
+      address: "0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6",
       abi: [
         {
           inputs: [
@@ -1511,7 +1511,7 @@ const deployedContracts = {
       },
     },
     GGToken: {
-      address: "0x8a836696f58d9e1893fF52bAaD51f1821eCadBb9",
+      address: "0xbfcd7fd7506071db94ad478aee027806d47c310d",
       abi: [
         {
           inputs: [

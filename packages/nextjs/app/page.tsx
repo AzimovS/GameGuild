@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   });
 
   const {
-    writeContract: nftContract,
+    writeContractAsync: nftContract,
     isSuccess: isNFTContractSuccess,
     isError: isNFTContractError,
   } = useScaffoldWriteContract("BrainNFT");
@@ -54,7 +54,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className="flex">
-            {!!synced && (
+            {synced != null && (
               <div className="px-4 bg-blue-950 rounded-xl">
                 <p className="text-sm text-gray-300">
                   Your GG tokens: <span className="text-md font-bold text-white">{formatEther(synced)}</span>
