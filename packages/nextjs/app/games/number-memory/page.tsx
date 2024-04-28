@@ -15,8 +15,8 @@ const ProgressBar = ({ progressPercentage }: { progressPercentage: number | stri
   return (
     <div className="w-full h-1 bg-gray-300">
       <div
-        style={{ width: `${progressPercentage}%` }}
         className={`h-full ${Number(progressPercentage) < 70 ? "bg-red-600" : "bg-green-600"}`}
+        style={{ width: `${Number(progressPercentage) * 100}%` }}
       ></div>
     </div>
   );
