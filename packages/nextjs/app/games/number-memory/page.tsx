@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { useAccount } from "wagmi";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { NumberMemoryIcon } from "~~/components/icons";
-import { useCoinsContext } from "~~/services/store/coinsContext";
+import { rewardTokens } from "~~/utils/rewardTokens";
 import { notification } from "~~/utils/scaffold-eth";
 
 const icon = <NumberMemoryIcon />;
@@ -24,7 +25,7 @@ const ProgressBar = ({ progressPercentage }: { progressPercentage: number | stri
 const REWARD = 10;
 
 const NumberMemory: React.FC = () => {
-  const { coins, setCoins } = useCoinsContext();
+  const { address: connectedAddress } = useAccount();
   const { push } = useRouter();
 
   const [activeGame, setActiveGame] = useState(false);
@@ -82,9 +83,11 @@ const NumberMemory: React.FC = () => {
   useEffect(() => {
     if (gameActive === 4) {
       notification.success(`Wow! You got ${level * REWARD - 20} GG tokens!`);
-      setCoins(coins + level * REWARD - 20);
+      if (connectedAddress) {
+        rewardTokens(connectedAddress, (level * REWARD - 20).toString());
+      }
     }
-  }, [gameActive, level, setCoins]);
+  }, [gameActive, level]);
 
   useEffect(() => {
     if (!activeGame) return;

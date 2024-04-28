@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { useAccount } from "wagmi";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { AlarmIcon, ReactionIcon } from "~~/components/icons";
-import { useCoinsContext } from "~~/services/store/coinsContext";
+import { rewardTokens } from "~~/utils/rewardTokens";
 import { notification } from "~~/utils/scaffold-eth";
 
 const MIN_COUNT_DOWN = 2000;
@@ -14,7 +15,8 @@ const NUM_ROUND = 3;
 const icon = <AlarmIcon />;
 
 const ReactionGame = () => {
-  const { coins, setCoins } = useCoinsContext();
+  const { address: connectedAddress } = useAccount();
+
   const { push } = useRouter();
 
   const [activeGame, setActiveGame] = useState(false);
@@ -202,8 +204,10 @@ const ReactionGame = () => {
         reward = 25;
       }
 
-      notification.success(`Wow! You got ${reward} GG tokens!`);
-      setCoins(coins + reward);
+      if (connectedAddress) {
+        rewardTokens(connectedAddress, reward.toString());
+        notification.success(`Wow! You got ${reward} GG tokens!`);
+      }
     }
   }, [roundState, sumScore]);
 

@@ -39,12 +39,16 @@ export const GameTemplate: FC<Props> = ({
         <>
           {cloneElement(pregameText)}
 
-          <button
-            onClick={connectedAddress ? () => setStart(false) : () => RainbowKitCustomConnectButton()}
-            className="px-4 py-3 mt-2 font-bold text-white rounded focus:outline-none bg-purple-950 ring-purple-800 transition-all hover:ring-2"
-          >
-            {connectedAddress ? "Start game" : "Please connect your wallet"}
-          </button>
+          {connectedAddress ? (
+            <button
+              onClick={() => setStart(false)}
+              className="px-4 py-3 mt-2 font-bold text-white rounded focus:outline-none bg-purple-950 ring-purple-800 transition-all hover:ring-2"
+            >
+              {"Start game"}
+            </button>
+          ) : (
+            <RainbowKitCustomConnectButton />
+          )}
         </>
       )}
       {!activeGame && !start && (

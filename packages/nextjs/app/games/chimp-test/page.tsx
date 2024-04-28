@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { useAccount } from "wagmi";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { ChimpIcon } from "~~/components/icons";
-import { useCoinsContext } from "~~/services/store/coinsContext";
+import { rewardTokens } from "~~/utils/rewardTokens";
 import { notification } from "~~/utils/scaffold-eth";
 
 const icon = <ChimpIcon />;
@@ -22,7 +23,7 @@ const MAX_STRIKES = 3;
 const REWARD = 5;
 
 const ChimpGame = () => {
-  const { coins, setCoins } = useCoinsContext();
+  const { address: connectedAddress } = useAccount();
   const { push } = useRouter();
   const [activeGame, setActiveGame] = useState(false);
 
@@ -71,9 +72,11 @@ const ChimpGame = () => {
   useEffect(() => {
     if (gameState.strikes === MAX_STRIKES) {
       notification.success(`Wow! You got ${gameState.numbers * REWARD} GG tokens!`);
-      setCoins(coins + gameState.numbers * REWARD);
+      if (connectedAddress) {
+        rewardTokens(connectedAddress, (gameState.numbers * REWARD).toString());
+      }
     }
-  }, [gameState.strikes, gameState.numbers, setCoins]);
+  }, [gameState.strikes, gameState.numbers]);
 
   const restartGame = () => {
     setTarget(1);
