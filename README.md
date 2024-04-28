@@ -1,21 +1,25 @@
-# 🏗 Scaffold-ETH 2
+# GameGuild (GG) on 🏗 Scaffold-ETH 2
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## About The Project
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+<p align="center">
+  <img src="demo.png" alt="demo" width="75%"/>
+</p>
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+Welcome to Game Guild, where engaging your mind leads to exclusive rewards! Embark on an adventure through three captivating games: Number Memory, Chimp Test, and Reaction Test, each designed to challenge your intellect and entertain. As you conquer puzzles and overcome challenges, you'll unlock a variety of NFTs, ranging from regular to silver and gold, available only to our community members. Dive into the cutting-edge intersection of gaming and blockchain technology, where fun meets opportunity. Ready to play, earn, and own?
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, and Typescript.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## Smart contracts
+
+Our core smart contracts are verified on Sepolia testnet.
+
+| Contract                                  | Link                                  |
+| ---------------------------------------- | -------------------------------------------- |
+| `GG ERC20 Token` | [0xbfcd7fd7506071db94ad478aee027806d47c310d](https://sepolia.etherscan.io/address/0xbfcd7fd7506071db94ad478aee027806d47c310d) |
+| `Brain ERC721 NFT` | [0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6](https://sepolia.etherscan.io/address/0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6) |
+
+
 
 ## Requirements
 
