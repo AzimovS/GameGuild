@@ -56,8 +56,9 @@ const Home: NextPage = () => {
           <div className="flex">
             {!!synced && (
               <div className="px-4 bg-blue-950 rounded-xl">
-                <p className="text-sm text-gray-300">Synced on-chain</p>
-                <p className="text-xl font-bold text-white">{formatEther(synced)}</p>
+                <p className="text-sm text-gray-300">
+                  Your GG tokens: <span className="text-md font-bold text-white">{formatEther(synced)}</span>
+                </p>
               </div>
             )}
           </div>

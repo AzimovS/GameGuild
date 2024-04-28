@@ -8,7 +8,7 @@ export const rewardTokens = async (address: string, tokens: string) => {
     });
     const resData = await res.json();
     if (resData.success) {
-      //   notification.success("ETH was sent");
+      // notification.success("GG Tokens was sent to you account");
     } else {
       notification.error(resData?.error?.reason);
     }
