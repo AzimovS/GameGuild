@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { useAccount } from "wagmi";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { ChimpIcon } from "~~/components/icons";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { rewardTokens } from "~~/utils/rewardTokens";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -24,6 +25,7 @@ const REWARD = 5;
 
 const ChimpGame = () => {
   const { address: connectedAddress } = useAccount();
+  const { targetNetwork } = useTargetNetwork();
   const { push } = useRouter();
   const [activeGame, setActiveGame] = useState(false);
 
@@ -73,7 +75,7 @@ const ChimpGame = () => {
     if (gameState.strikes === MAX_STRIKES) {
       notification.success(`Wow! You got ${gameState.numbers * REWARD} GG tokens!`);
       if (connectedAddress) {
-        rewardTokens(connectedAddress, (gameState.numbers * REWARD).toString());
+        rewardTokens(connectedAddress, (gameState.numbers * REWARD).toString(), targetNetwork?.id);
       }
     }
   }, [gameState.strikes, gameState.numbers]);

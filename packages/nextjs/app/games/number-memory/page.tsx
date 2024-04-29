@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { useAccount } from "wagmi";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { NumberMemoryIcon } from "~~/components/icons";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { rewardTokens } from "~~/utils/rewardTokens";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -26,6 +27,7 @@ const REWARD = 10;
 
 const NumberMemory: React.FC = () => {
   const { address: connectedAddress } = useAccount();
+  const { targetNetwork } = useTargetNetwork();
   const { push } = useRouter();
 
   const [activeGame, setActiveGame] = useState(false);
@@ -84,7 +86,7 @@ const NumberMemory: React.FC = () => {
     if (gameActive === 4) {
       notification.success(`Wow! You got ${level * REWARD - 20} GG tokens!`);
       if (connectedAddress) {
-        rewardTokens(connectedAddress, (level * REWARD - 20).toString());
+        rewardTokens(connectedAddress, (level * REWARD - 20).toString(), targetNetwork?.id);
       }
     }
   }, [gameActive, level]);

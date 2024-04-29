@@ -1,10 +1,10 @@
 import { notification } from "./scaffold-eth";
 
-export const rewardTokens = async (address: string, tokens: string) => {
+export const rewardTokens = async (address: string, tokens: string, chainId: number) => {
   try {
     const res = await fetch("/api/reward", {
       method: "POST",
-      body: JSON.stringify({ address, tokens }),
+      body: JSON.stringify({ address, tokens, chainId }),
     });
     const resData = await res.json();
     if (resData.success) {

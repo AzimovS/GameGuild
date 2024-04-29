@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { useAccount } from "wagmi";
 import { GameTemplate } from "~~/components/GameTemplate/component";
 import { AlarmIcon, ReactionIcon } from "~~/components/icons";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { rewardTokens } from "~~/utils/rewardTokens";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -16,6 +17,7 @@ const icon = <AlarmIcon />;
 
 const ReactionGame = () => {
   const { address: connectedAddress } = useAccount();
+  const { targetNetwork } = useTargetNetwork();
 
   const { push } = useRouter();
 
@@ -205,7 +207,7 @@ const ReactionGame = () => {
       }
 
       if (connectedAddress) {
-        rewardTokens(connectedAddress, reward.toString());
+        rewardTokens(connectedAddress, reward.toString(), targetNetwork?.id);
         notification.success(`Wow! You got ${reward} GG tokens!`);
       }
     }
