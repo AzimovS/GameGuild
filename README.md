@@ -12,14 +12,12 @@ Welcome to Game Guild, where engaging your mind leads to exclusive rewards! Emba
 
 ## Smart contracts
 
-Our core smart contracts are verified on Sepolia testnet.
+Our core smart contracts are verified on Linea Sepolia and Sepolia testnet.
 
-| Contract                                  | Link                                  |
-| ---------------------------------------- | -------------------------------------------- |
-| `GG ERC20 Token` | [0xbfcd7fd7506071db94ad478aee027806d47c310d](https://sepolia.etherscan.io/address/0xbfcd7fd7506071db94ad478aee027806d47c310d) |
-| `Brain ERC721 NFT` | [0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6](https://sepolia.etherscan.io/address/0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6) |
-
-
+| Contract           | Linea Sepolia                                                                                                               | Sepolia                                                                                                                       |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `GG ERC20 Token`   | [0x3526c0Fc8453748e08dAA3723A620efaC386EA4f](https://sepolia.lineascan.build/address/0x3526c0fc8453748e08daa3723a620efac386ea4f) | [0xbfcd7fd7506071db94ad478aee027806d47c310d](https://sepolia.etherscan.io/address/0xbfcd7fd7506071db94ad478aee027806d47c310d) |
+| `Brain ERC721 NFT` | [0x899C7f51B154d0D009945bC30c21815b0E525d9a](https://sepolia.lineascan.build/address/0x899c7f51b154d0d009945bc30c21815b0e525d9a) | [0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6](https://sepolia.etherscan.io/address/0x5c72cd6c6a97b0859df4e9796b807f2109e6a8b6) |
 
 ## Requirements
 
