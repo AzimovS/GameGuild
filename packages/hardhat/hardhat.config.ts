@@ -19,6 +19,8 @@ const deployerPrivateKey =
 // If not set, it uses ours Etherscan default API key.
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
+const LINEASCAN_API_KEY = process.env.LINEASCAN_API_KEY ?? "";
+
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.17",
@@ -118,10 +120,31 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.publicgoods.network",
       accounts: [deployerPrivateKey],
     },
+    linea_sepolia: {
+      url: `https://rpc.sepolia.linea.build/`,
+      accounts: [deployerPrivateKey],
+    },
+    linea_mainnet: {
+      url: `https://rpc.linea.build/`,
+      accounts: [deployerPrivateKey],
+    },
   },
   // configuration for harhdat-verify plugin
   etherscan: {
-    apiKey: `${etherscanApiKey}`,
+    // apiKey: `${etherscanApiKey}`,
+    apiKey: {
+      linea_sepolia: LINEASCAN_API_KEY,
+    },
+    customChains: [
+      {
+        network: "linea_sepolia",
+        chainId: 59141,
+        urls: {
+          apiURL: "https://api-sepolia.lineascan.build/api",
+          browserURL: "https://sepolia.lineascan.build/address",
+        },
+      },
+    ],
   },
   // configuration for etherscan-verify from hardhat-deploy plugin
   verify: {
