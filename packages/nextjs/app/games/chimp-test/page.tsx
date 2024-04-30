@@ -132,7 +132,7 @@ const ChimpGame = () => {
           </p>
           <p>
             <b>Coins per level: </b>
-            {REWARD} BIT
+            {REWARD} GG
           </p>
         </div>
       </div>
@@ -189,7 +189,7 @@ const ChimpGame = () => {
                   <ChimpIcon className="w-24 mx-auto" />
                   <h3 className="mb-2 text-4xl">Numbers: {gameState.numbers}</h3>
                   {/* <p className="mt-4 mb-5 text-5xl">{gameState.numbers}</p> */}
-                  <h3 className="mb-5 text-4xl">Reward: {gameState.numbers * REWARD} BIT coins</h3>
+                  <h3 className="mb-5 text-4xl">Reward: {gameState.numbers * REWARD} GG coins</h3>
                   {/* <p className="mt-4 mb-5 text-5xl">{gameState.numbers}</p> */}
                   <div className="mx-auto">
                     <button
